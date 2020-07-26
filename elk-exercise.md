@@ -42,7 +42,7 @@ GET /_cluster/health
 curl -XGET "http://localhost:9200/_cluster/health"
 ```
 
-- command input: Listing the cluster's nodes
+- command input: **Listing the cluster's nodes**
 
 ```http
 GET /_cat/nodes?v
@@ -61,7 +61,7 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master
 curl -XGET "http://localhost:9200/_cat/nodes?v"
 ```
 
-- command input: Listing the cluster's indicies
+- command input: **Listing the cluster's indicies**
 
 ```http
 
@@ -87,7 +87,7 @@ yellow open   products                 g_56tv_kRLS3A-WQ7Lfnhg   1   1          1
 curl -XGET "http://localhost:9200/_cat/indices?v"
 ```
 
-- command input: Test search query
+- command input: **Test search query**
 
 ```http
 
@@ -291,7 +291,7 @@ GET /.kibana/_search
 curl -XGET "http://localhost:9200/.kibana/_search" -H 'Content-Type: application/json' -d'{  "query": {    "match_all": {}  }}'
 ```
 
-- command input: Creating a new index
+- command input: **Creating a new index**
 
 ```http
 
@@ -315,7 +315,7 @@ PUT /pages
 curl -XPUT "http://localhost:9200/pages"
 ```
 
-- command input: Listing the cluster;s shards
+- command input: **Listing the cluster's shards**
 
 ```http
 
@@ -343,7 +343,7 @@ pages                    0     r      UNASSIGNED
 curl -XGET "http://localhost:9200/_cat/shards?v"
 ```
 
-- command input: Deleting an index
+- command input: **Deleting an index**
 
 ```http
 
@@ -366,7 +366,7 @@ DELETE /pages
 curl -XDELETE "http://localhost:9200/pages"
 ```
 
-- command input: Deleteing an index.
+- command input: **Deleteing an index.**
 
 ```http
 
@@ -389,7 +389,7 @@ DELETE /products
 curl -XDELETE "http://localhost:9200/products"
 ```
 
-- command input: Indexing document with auto generated ID
+- command input: **Indexing document with auto generated ID**
 
 ```http
 
@@ -427,7 +427,7 @@ POST /products/_doc
 curl -XPOST "http://localhost:9200/products/_doc" -H 'Content-Type: application/json' -d'{  "name": "Coffee Maker",  "price": 64,  "in_stock": 10}'
 ```
 
-- command input: Indexing document with customer ID.
+- command input: **Indexing document with customer ID.**
 
 ```http
 
@@ -466,7 +466,7 @@ PUT /products/_doc/100
 curl -XPUT "http://localhost:9200/products/_doc/100" -H 'Content-Type: application/json' -d'{  "name": "TOASTER",  "price": 49,  "in_stock": 4}'
 ```
 
-- command input: Retrieving documents by ID
+- command input: **Retrieving documents by ID**
 
 ```http
 GET /products/_doc/100
@@ -499,7 +499,7 @@ GET /products/_doc/100
 curl -XGET "http://localhost:9200/products/_doc/100"
 ```
 
-- command input: Updating an existing field
+- command input:**Updating an existing field**
 
 ```http
 
@@ -540,7 +540,7 @@ curl -XPOST "http://localhost:9200/products/_update/100" -H 'Content-Type: appli
 ```
 
 
-- command input: Adding a new field
+- command input:**Adding a new field**
 
 ```http
 POST /products/_update/100
@@ -577,7 +577,7 @@ POST /products/_update/100
 curl -XPOST "http://localhost:9200/products/_update/100" -H 'Content-Type: application/json' -d'{  "doc": {    "tags": ["electronics"]  }}'
 ```
 
-- command input: Reducing the current value of in_stock by one.
+- command input: **Reducing the current value of in_stock by one.**
 
 ```http
 
@@ -616,7 +616,7 @@ POST /products/_update/100
 curl -XPOST "http://localhost:9200/products/_update/100" -H 'Content-Type: application/json' -d'{  "script": {    "source": "ctx._source.in_stock--"  }}'
 ```
 
-- command input: Assigning an arbitrary value to in_stock.
+- command input: **Assigning an arbitrary value to in_stock.**
 
 ```http
 
@@ -655,7 +655,7 @@ POST /products/_update/100
 curl -XPOST "http://localhost:9200/products/_update/100" -H 'Content-Type: application/json' -d'{  "script": {    "source": "ctx._source.in_stock = 10"  }}'
 ```
 
-- command input: DEleting documents
+- command input:**DEleting documents**
 
 ```http
 DELETE /products/_doc/100
