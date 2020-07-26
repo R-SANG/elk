@@ -42,7 +42,7 @@ GET /_cluster/health
 curl -XGET "http://localhost:9200/_cluster/health"
 ```
 
-- command input: Updating a document
+- command input: Listing the cluster's nodes
 
 ```http
 GET /_cat/nodes?v
@@ -61,10 +61,7 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master
 curl -XGET "http://localhost:9200/_cat/nodes?v"
 ```
 
-
-====new1====
-
-- command input: Checking the cluster health.
+- command input: Listing the cluster's indicies
 
 ```http
 
@@ -90,11 +87,7 @@ yellow open   products                 g_56tv_kRLS3A-WQ7Lfnhg   1   1          1
 curl -XGET "http://localhost:9200/_cat/indices?v"
 ```
 
-
-
-====new2====
-
-- command input: Checking the cluster health.
+- command input: Test search query
 
 ```http
 
@@ -298,10 +291,7 @@ GET /.kibana/_search
 curl -XGET "http://localhost:9200/.kibana/_search" -H 'Content-Type: application/json' -d'{  "query": {    "match_all": {}  }}'
 ```
 
-
-====new3====
-
-- command input: Checking the cluster health.
+- command input: Creating a new index
 
 ```http
 
@@ -325,12 +315,7 @@ PUT /pages
 curl -XPUT "http://localhost:9200/pages"
 ```
 
-
-
-
-====new4====
-
-- command input: Checking the cluster health.
+- command input: Listing the cluster;s shards
 
 ```http
 
@@ -358,11 +343,7 @@ pages                    0     r      UNASSIGNED
 curl -XGET "http://localhost:9200/_cat/shards?v"
 ```
 
-
-
-====new5====
-
-- command input: Checking the cluster health.
+- command input: Deleting an index
 
 ```http
 
@@ -385,11 +366,7 @@ DELETE /pages
 curl -XDELETE "http://localhost:9200/pages"
 ```
 
-
-
-====new6====
-
-- command input: Checking the cluster health.
+- command input: Deleteing an index.
 
 ```http
 
@@ -412,11 +389,7 @@ DELETE /products
 curl -XDELETE "http://localhost:9200/products"
 ```
 
-
-
-====new7====
-
-- command input: Checking the cluster health.
+- command input: Indexing document with auto generated ID
 
 ```http
 
@@ -454,21 +427,15 @@ POST /products/_doc
 curl -XPOST "http://localhost:9200/products/_doc" -H 'Content-Type: application/json' -d'{  "name": "Coffee Maker",  "price": 64,  "in_stock": 10}'
 ```
 
-
-
-
-====new8====
-
-- command input: Checking the cluster health.
+- command input: Indexing document with customer ID.
 
 ```http
 
-
-POST /products/_doc/100
+PUT /products/_doc/100
 {
-  "name": "Machine Maker",
-  "price": 99,
-  "in_stock": 12
+  "name": "TOASTER",
+  "price": 49,
+  "in_stock": 4
 }
 ```
 
@@ -479,14 +446,14 @@ POST /products/_doc/100
   "_index" : "products",
   "_type" : "_doc",
   "_id" : "100",
-  "_version" : 1,
-  "result" : "created",
+  "_version" : 2,
+  "result" : "updated",
   "_shards" : {
     "total" : 4,
     "successful" : 1,
     "failed" : 0
   },
-  "_seq_no" : 0,
+  "_seq_no" : 7,
   "_primary_term" : 1
 }
 
@@ -496,14 +463,10 @@ POST /products/_doc/100
 - alternative curl:
   
 ```bash
-curl -XPOST "http://localhost:9200/products/_doc/100" -H 'Content-Type: application/json' -d'{  "name": "Machine Maker",  "price": 99,  "in_stock": 12}'
+curl -XPUT "http://localhost:9200/products/_doc/100" -H 'Content-Type: application/json' -d'{  "name": "TOASTER",  "price": 49,  "in_stock": 4}'
 ```
 
-
-
-====new9====
-
-- command input: Checking the cluster health.
+- command input: Retrieving documents by ID
 
 ```http
 GET /products/_doc/100
@@ -536,11 +499,7 @@ GET /products/_doc/100
 curl -XGET "http://localhost:9200/products/_doc/100"
 ```
 
-
-
-====new10====
-
-- command input: Checking the cluster health.
+- command input: Updating an existing field
 
 ```http
 
@@ -581,9 +540,7 @@ curl -XPOST "http://localhost:9200/products/_update/100" -H 'Content-Type: appli
 ```
 
 
-====new11====
-
-- command input: Checking the cluster health.
+- command input: Adding a new field
 
 ```http
 POST /products/_update/100
@@ -620,10 +577,7 @@ POST /products/_update/100
 curl -XPOST "http://localhost:9200/products/_update/100" -H 'Content-Type: application/json' -d'{  "doc": {    "tags": ["electronics"]  }}'
 ```
 
-
-====new12====
-
-- command input: Checking the cluster health.
+- command input: Reducing the current value of in_stock by one.
 
 ```http
 
@@ -662,11 +616,7 @@ POST /products/_update/100
 curl -XPOST "http://localhost:9200/products/_update/100" -H 'Content-Type: application/json' -d'{  "script": {    "source": "ctx._source.in_stock--"  }}'
 ```
 
-
-
-====new13====
-
-- command input: Checking the cluster health.
+- command input: Assigning an arbitrary value to in_stock.
 
 ```http
 
@@ -705,11 +655,7 @@ POST /products/_update/100
 curl -XPOST "http://localhost:9200/products/_update/100" -H 'Content-Type: application/json' -d'{  "script": {    "source": "ctx._source.in_stock = 10"  }}'
 ```
 
-
-
-====new14====
-
-- command input: Checking the cluster health.
+- command input: DEleting documents
 
 ```http
 DELETE /products/_doc/100
@@ -743,4 +689,4 @@ DELETE /products/_doc/100
 curl -XDELETE "http://localhost:9200/products/_doc/100"
 ```
 
-repeat ... next command ... etc
+
