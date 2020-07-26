@@ -7,7 +7,7 @@ command as follows:
 
 ## Kibana Console
 
-- command input: Checking the cluster health.
+- command input: **Checking the cluster health.**
 
 ```http
 
